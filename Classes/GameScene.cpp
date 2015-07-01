@@ -8,6 +8,7 @@
 
 #include "GameScene.h"
 #include "SceneManager.h"
+#include "Grid.h"
 using namespace cocos2d;
 
 bool GameScene::init()
@@ -27,6 +28,14 @@ void GameScene::onEnter()
     
     cocos2d::Size visibleSize = Director::getInstance()->getVisibleSize();
     
+    //setup grid
+    grid = Grid::create();
+    
+    grid->setAnchorPoint(Vec2(0.5f, 0.0f));
+    grid->setPosition(Vec2(visibleSize.width * 0.5f, 0.0f));
+    this->addChild(grid);
+    
+    //setup menu
     ui::Button* backButton = ui::Button::create();
     backButton->setAnchorPoint(Vec2(0.0f,1.0f));
     backButton->setPosition(Vec2(0.0f,visibleSize.height));
@@ -34,6 +43,8 @@ void GameScene::onEnter()
     this->addChild(backButton);
     
     backButton->addTouchEventListener(CC_CALLBACK_2(GameScene::backButtonPressed,this));
+    
+    
 }
 
 void GameScene::backButtonPressed(Ref* pSender, ui::Widget::TouchEventType eEventType)
