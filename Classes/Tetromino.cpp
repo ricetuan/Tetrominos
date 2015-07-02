@@ -9,6 +9,7 @@
 
 #include "Tetromino.h"
 #include "JSONPacker.h"
+#include <unordered_set>
 
 #define GRID_SIZE 4
 
@@ -93,6 +94,27 @@ void Tetromino::rotate(bool right) {
       
     }
     
+}
+
+int Tetromino::getHighestYCoordinate()
+{
+    auto coordinates = rotations[this->rotationIndex];
+    int highestYCoordinate = 0;
+
+    for (Coordinate coordinate : coordinates) {
+        highestYCoordinate = highestYCoordinate >= coordinate.y ? highestYCoordinate : coordinate.y;
+    }
+    return highestYCoordinate;
+}
+
+int Tetromino::getWidthInBlocks()
+{
+    auto coordinates = rotations[this->rotationIndex];
+    std::unordered_set<int> widthPoint;
+    for (Coordinate coordinate : coordinates) {
+        widthPoint.insert(coordinate.x);
+    }
     
+    return widthPoint.size();
     
 }
