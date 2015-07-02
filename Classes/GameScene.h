@@ -23,6 +23,8 @@ protected:
     bool init() override;
     void onEnter() override;
     void backButtonPressed(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType eEventType);
+    
+    void setupTouchHandling();
 };
 
 #endif /* defined(__Tetrominos__GameScene__) */

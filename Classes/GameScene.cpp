@@ -11,6 +11,7 @@
 #include "Grid.h"
 using namespace cocos2d;
 
+#pragma mark LifeCyle
 bool GameScene::init()
 {
     if (! Node::init()) {
@@ -40,16 +41,41 @@ void GameScene::onEnter()
     backButton->setAnchorPoint(Vec2(0.0f,1.0f));
     backButton->setPosition(Vec2(0.0f,visibleSize.height));
     backButton->loadTextures("backButton.png", "backButtonPressed.png");
+    backButton->addTouchEventListener(CC_CALLBACK_2(GameScene::backButtonPressed,this));
+
     this->addChild(backButton);
     
-    backButton->addTouchEventListener(CC_CALLBACK_2(GameScene::backButtonPressed,this));
-    
-    
+    setupTouchHandling();
 }
 
+void GameScene::setupTouchHandling()
+{
+    auto touchListener = EventListenerTouchOneByOne::create();
+    
+    touchListener->onTouchBegan = [&](Touch* touch, Event* event)
+    {
+        return true;
+    };
+    
+    touchListener->onTouchEnded = [&](Touch* touch, Event* event)
+    {
+        grid->rotateActiveTetromino();
+    };
+    
+    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchListener, this);
+}
+
+
+#pragma mark -
+#pragma mark UI Method
 void GameScene::backButtonPressed(Ref* pSender, ui::Widget::TouchEventType eEventType)
 {
     if (eEventType == ui::Widget::TouchEventType::ENDED) {
         SceneManager::getInstance()->backToLobby();
     }
+    
 }
+#pragma mark -
+#pragma mark Public Method
+
+

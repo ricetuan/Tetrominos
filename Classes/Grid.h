@@ -9,14 +9,22 @@
 #ifndef __Tetrominos__Grid__
 #define __Tetrominos__Grid__
 
-#include <stdio.h>
+#include "cocos2d.h"
+
+class Tetromino;
 
 class Grid : public cocos2d::Sprite
 {
 public:
     CREATE_FUNC(Grid);
+    
+    void rotateActiveTetromino();
+    
 private:
+    Tetromino* activeTetromino;
+    
     bool init() override;
+    void onEnter() override;
     
 };
 

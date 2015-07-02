@@ -26,3 +26,4 @@ Coordinate Coordinate::add(Coordinate a, Coordinate b)
 {
     return Coordinate(a.x + b.x, a.y + b.y);
 }
+
