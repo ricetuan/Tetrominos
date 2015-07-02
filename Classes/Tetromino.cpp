@@ -8,6 +8,8 @@
 //
 
 #include "Tetromino.h"
+#include "JSONPacker.h"
+using namespace cocos2d;
 
 Tetromino* Tetromino::createWithType(TetrominoType type)
 {
@@ -31,6 +33,9 @@ bool Tetromino::initWithType(TetrominoType type)
     
     this->type = type;
     rotations = std::vector<std::vector<Coordinate>>();
+    
+    std::string jsonStr = FileUtils::getInstance()->getStringFromFile("tetrominos.json");
+    JSONPacker::TetrominoState tetrominoState = JSONPacker::unpackTetrominoJSON(jsonStr, type);
     
     return true;
 }

@@ -72,6 +72,8 @@
 		9E21B9281B44A84200CAA983 /* Tetromino.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E21B9251B44A84200CAA983 /* Tetromino.cpp */; };
 		9E21B92B1B44AFD900CAA983 /* Coordinate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E21B9291B44AFD900CAA983 /* Coordinate.cpp */; };
 		9E21B92C1B44AFD900CAA983 /* Coordinate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E21B9291B44AFD900CAA983 /* Coordinate.cpp */; };
+		9E21B9331B44B45D00CAA983 /* JSONPacker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E21B9311B44B45D00CAA983 /* JSONPacker.cpp */; };
+		9E21B9341B44B45D00CAA983 /* JSONPacker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E21B9311B44B45D00CAA983 /* JSONPacker.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -177,6 +179,8 @@
 		9E21B9261B44A84200CAA983 /* Tetromino.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tetromino.h; sourceTree = "<group>"; };
 		9E21B9291B44AFD900CAA983 /* Coordinate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Coordinate.cpp; sourceTree = "<group>"; };
 		9E21B92A1B44AFD900CAA983 /* Coordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coordinate.h; sourceTree = "<group>"; };
+		9E21B9311B44B45D00CAA983 /* JSONPacker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONPacker.cpp; sourceTree = "<group>"; };
+		9E21B9321B44B45D00CAA983 /* JSONPacker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONPacker.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -329,6 +333,8 @@
 				9E21B92A1B44AFD900CAA983 /* Coordinate.h */,
 				9E21B9131B447DD200CAA983 /* Lobby.cpp */,
 				9E21B9141B447DD200CAA983 /* Lobby.h */,
+				9E21B9311B44B45D00CAA983 /* JSONPacker.cpp */,
+				9E21B9321B44B45D00CAA983 /* JSONPacker.h */,
 				9E21B9181B44861100CAA983 /* GameScene.cpp */,
 				9E21B9191B44861100CAA983 /* GameScene.h */,
 			);
@@ -540,6 +546,7 @@
 				9E21B92B1B44AFD900CAA983 /* Coordinate.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				9E21B9271B44A84200CAA983 /* Tetromino.cpp in Sources */,
+				9E21B9331B44B45D00CAA983 /* JSONPacker.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,6 +561,7 @@
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				9E21B9161B447DD200CAA983 /* Lobby.cpp in Sources */,
 				9E21B9241B44A49000CAA983 /* Grid.cpp in Sources */,
+				9E21B9341B44B45D00CAA983 /* JSONPacker.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				9E21B9281B44A84200CAA983 /* Tetromino.cpp in Sources */,
 			);
