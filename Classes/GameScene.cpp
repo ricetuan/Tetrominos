@@ -9,6 +9,9 @@
 #include "GameScene.h"
 #include "SceneManager.h"
 #include "Grid.h"
+#include "TetrominoBag.h"
+#include "Tetromino.h"
+
 using namespace cocos2d;
 
 #pragma mark LifeCyle
@@ -19,6 +22,8 @@ bool GameScene::init()
     }
     LayerColor* background = LayerColor::create(Color4B(255,255,255,255));
     this->addChild(background);
+    
+    this->tetrominoBag = std::unique_ptr<TetrominoBag>(new TetrominoBag());
     
     return true;
 }
@@ -35,6 +40,9 @@ void GameScene::onEnter()
     grid->setAnchorPoint(Vec2(0.5f, 0.0f));
     grid->setPosition(Vec2(visibleSize.width * 0.5f, 0.0f));
     this->addChild(grid);
+    
+    Tetromino* randomTest = createRandomTetromino();
+    grid->spawnTetromino(randomTest);
     
     //setup menu
     ui::Button* backButton = ui::Button::create();
@@ -78,4 +86,13 @@ void GameScene::backButtonPressed(Ref* pSender, ui::Widget::TouchEventType eEven
 #pragma mark -
 #pragma mark Public Method
 
+#pragma mark -
+#pragma mark Protected Method
 
+Tetromino* GameScene::createRandomTetromino()
+{
+    TetrominoType tetrominoType = tetrominoBag->getTetromino();
+    Tetromino* newTetromino = Tetromino::createWithType(tetrominoType);
+    
+    return newTetromino;
+}
