@@ -9,6 +9,9 @@
 
 #include "Tetromino.h"
 #include "JSONPacker.h"
+
+#define GRID_SIZE 4
+
 using namespace cocos2d;
 
 Tetromino* Tetromino::createWithType(TetrominoType type)
@@ -23,8 +26,6 @@ Tetromino* Tetromino::createWithType(TetrominoType type)
     }
 }
 
-
-
 bool Tetromino::initWithType(TetrominoType type)
 {
     if (! Node::init()) {
@@ -36,6 +37,29 @@ bool Tetromino::initWithType(TetrominoType type)
     
     std::string jsonStr = FileUtils::getInstance()->getStringFromFile("tetrominos.json");
     JSONPacker::TetrominoState tetrominoState = JSONPacker::unpackTetrominoJSON(jsonStr, type);
+    
+    this->color = tetrominoState.color;
+    this->rotations = tetrominoState.rotations;
+    
+    this->blocks = std::vector<Sprite*>(4);
+    
+    Sprite* dummyBlock = Sprite::create("block.png");
+    Size dummySize = dummyBlock->getContentSize();
+    
+    float gridSizeF = float(GRID_SIZE);
+    this->setContentSize(Size(dummySize.width * gridSizeF, dummySize.height * gridSizeF));
+    
+    auto coordinates = rotations[0];
+    
+    for (Coordinate coordinate : coordinates) {
+        Sprite* block = Sprite::create("block.png");
+        block->setColor(this->color);
+        block->setAnchorPoint(Vec2(0.0f, 0.0f));
+        block->setPosition(Vec2(coordinate.x * dummySize.width, coordinate.y * dummySize.height));
+        
+        this->addChild(block);
+        this->blocks.push_back(block);
+    }
     
     return true;
 }

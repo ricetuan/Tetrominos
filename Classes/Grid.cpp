@@ -14,5 +14,5 @@ bool Grid::init()
     if(! Sprite::initWithFile("grid.png")){
         return false;
     }
-    return true;
+     return true;
 }
