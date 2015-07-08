@@ -16,6 +16,8 @@
 class Tetromino;
 class Grid;
 
+class Coordinate;
+
 class GameScene : public cocos2d::Node
 {
 public:
@@ -32,6 +34,7 @@ protected:
     void setGameActive(bool active);
     void setupTouchHandling();
     void step(float dt);
+    Coordinate convertPositionToCoordinate(cocos2d::Vec2 position);
     
     void backButtonPressed(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType eEventType);
 };

@@ -64,6 +64,8 @@ void Grid::step()
     this->setActiveTetrominoCoordinate(nextCoordinate);
 }
 
+
+
 #pragma mark -
 #pragma mark Setters / Getters
 void Grid::setActiveTetrominoCoordinate(Coordinate coordinate)
@@ -75,9 +77,24 @@ void Grid::setActiveTetrominoCoordinate(Coordinate coordinate)
  
 }
 
+Tetromino* Grid::getActiveTetromino()
+{
+    return this->activeTetromino;
+}
+
 Coordinate Grid::getActiveTetrominoCoordinate()
 {
     return this->activeTetrominoCoordinate;
+}
+
+Size Grid::getBlockSize()
+{
+    Size contentSize = this->getContentSize();
+
+    float blockWidth = contentSize.width / float(GRID_WIDTH);
+    float blockHeight = contentSize.height/ float(GRID_HEIGHT);
+    
+    return Size(blockWidth,blockHeight);
 }
 
 
