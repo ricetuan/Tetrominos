@@ -34,6 +34,10 @@ void Grid::rotateActiveTetromino()
 {
     if (this->activeTetromino) {
         activeTetromino->rotate(true);
+        if (this->checkIFTetrominoCollides(activeTetromino, activeTetrominoCoordinate)) {
+            this->activeTetromino->rotate(false);
+        }
+            
     }
     
     //TODO: check if collision,undo rotation
@@ -43,7 +47,6 @@ void Grid::spawnTetromino(Tetromino* tetromino)
 {
     this->activeTetromino = tetromino;
 
-    
     this->activeTetromino->setAnchorPoint(Vec2(0.0f, 0.0f));
     
     int width = this->activeTetromino->getWidthInBlocks();
@@ -71,8 +74,10 @@ void Grid::step()
 void Grid::setActiveTetrominoCoordinate(Coordinate coordinate)
 {
     if (activeTetromino) {
-        activeTetrominoCoordinate = coordinate;
-        activeTetromino->setPosition(this->convertCoordinateToPosition(activeTetrominoCoordinate));
+        if (! this->checkIFTetrominoCollides(activeTetromino, coordinate)) {
+             activeTetrominoCoordinate = coordinate;
+             activeTetromino->setPosition(this->convertCoordinateToPosition(activeTetrominoCoordinate));
+        }
     }
  
 }
@@ -112,5 +117,19 @@ Vec2 Grid::convertCoordinateToPosition(Coordinate coordinate)
     
 }
 
+bool Grid::checkIFTetrominoCollides(Tetromino* tetromino, Coordinate tetrominoCoordinate)
+{
+    int skirtStart = tetromino->getMinimumXCoordinate();
+    std::vector<int> skirt = tetromino->getSkirt();
+    for (int index=0; index < skirt.size(); ++index) {
+        Coordinate localCoordinate = Coordinate(index + skirtStart, skirt[index]);
+        Coordinate gridCoordinate = Coordinate::add(tetrominoCoordinate, localCoordinate);
+        
+        if (gridCoordinate.x < 0 || gridCoordinate.y < 0 || gridCoordinate.x >= GRID_WIDTH || gridCoordinate.y >= GRID_HEIGHT) {
+            return true;
+        }
+    }
+    return false;
+}
 
 

@@ -26,7 +26,6 @@ public:
     Coordinate getActiveTetrominoCoordinate();
     cocos2d::Size getBlockSize();
     Tetromino* getActiveTetromino();
-
     
 private:
     Tetromino* activeTetromino;
@@ -35,6 +34,7 @@ private:
     bool init() override;
     void onEnter() override;
     cocos2d::Vec2 convertCoordinateToPosition(Coordinate coordinate);
+    bool checkIFTetrominoCollides(Tetromino* tetromino, Coordinate tetrominoCoordinate);
 
 };
 

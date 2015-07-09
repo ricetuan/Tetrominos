@@ -114,7 +114,36 @@ int Tetromino::getWidthInBlocks()
     for (Coordinate coordinate : coordinates) {
         widthPoint.insert(coordinate.x);
     }
-    
     return widthPoint.size();
-    
 }
+
+int Tetromino::getMinimumXCoordinate()
+{
+    auto coordinates = rotations[this->rotationIndex];
+    int mininumXCoordinate = GRID_SIZE;
+    for (Coordinate coordinate : coordinates) {
+        mininumXCoordinate = coordinate.x < mininumXCoordinate ? coordinate.x : mininumXCoordinate;
+    }
+    return mininumXCoordinate;
+}
+
+std::vector<int> Tetromino::getSkirt()
+{
+    int width = this->getWidthInBlocks();
+    int skirtStart = this->getMinimumXCoordinate();
+    
+    std::vector<int> skirt = std::vector<int>(width,GRID_SIZE -1);
+    
+    auto coordinates = rotations[this->rotationIndex];
+    for (Coordinate coordinate : coordinates) {
+        int x = coordinate.x - skirtStart;
+        int skirtY = skirt[x];
+        
+        if (coordinate.y < skirtY) {
+            skirt[x] = coordinate.y;
+        }
+    }
+    return skirt;
+
+}
+
