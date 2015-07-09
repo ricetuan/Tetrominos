@@ -107,21 +107,23 @@ void GameScene::setupTouchHandling()
     
     touchListener->onTouchEnded = [&](Touch* touch, Event* event)
     {
-        Vec2 touchEndPos = this->convertTouchToNodeSpace(touch);
-        float distance = touchEndPos.distance(firstTouchPos);
-        Size blockSize = this->grid->getBlockSize();
-        
-        //TODO: check the speed why is too fast
-        if (distance < blockSize.width && allowRotate) {
-            grid->rotateActiveTetromino();
-        } else {
-            Vec2 difference = touchEndPos - firstTouchPos; //maybe use lastTouchPos
-            float touchDuration = (float) (clock() - touchStartedTime) /CLOCKS_PER_SEC;
+        if (this->grid->getActiveTetromino()) {
+            Vec2 touchEndPos = this->convertTouchToNodeSpace(touch);
+            float distance = touchEndPos.distance(firstTouchPos);
+            Size blockSize = this->grid->getBlockSize();
             
-            float velocity = fabsf(difference.y / touchDuration);
+            //TODO: check the speed why is too fast
+            if (distance < blockSize.width && allowRotate) {
+                grid->rotateActiveTetromino();
+            } else {
+                Vec2 difference = touchEndPos - firstTouchPos; //maybe use lastTouchPos
+                float touchDuration = (float) (clock() - touchStartedTime) /CLOCKS_PER_SEC;
+                
+                float velocity = fabsf(difference.y / touchDuration);
 
-            if (velocity > DROP_VECOCITY) {
-                CCLOG("DROP %f",velocity);
+                if (velocity > DROP_VECOCITY) {
+                    this->grid->dropActiveTetromino();
+                }
             }
         }
     };

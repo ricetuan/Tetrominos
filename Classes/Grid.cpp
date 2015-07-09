@@ -184,4 +184,22 @@ void Grid::placeTetrominoOnBorad(Tetromino* tetromino, Coordinate tetrominoCoord
     
 }
 
+Coordinate Grid::getTetrominoLandingCoordinate()
+{
+    Coordinate landingTetrominoCoordinate = activeTetrominoCoordinate;
+    while (! checkIFTetrominoCollides(activeTetromino, landingTetrominoCoordinate)) {
+        landingTetrominoCoordinate.y--;
+    }
+    landingTetrominoCoordinate.y++;
+    return landingTetrominoCoordinate;
+}
+
+void Grid::dropActiveTetromino()
+{
+        Coordinate landingCoordinate = this->getTetrominoLandingCoordinate();
+        this->setActiveTetrominoCoordinate(landingCoordinate);
+        this->deactiveTetromino(activeTetromino, activeTetrominoCoordinate);
+
+}
+
 
