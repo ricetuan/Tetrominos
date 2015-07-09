@@ -87,7 +87,6 @@ void GameScene::setupTouchHandling()
         
         Tetromino* activeTetromino = grid->getActiveTetromino();
         if (activeTetromino) {
-            Coordinate touchCoordinate = this->convertPositionToCoordinate(touchPos);
             Coordinate differenceCoordinate = this->convertPositionToCoordinate(difference);
             Coordinate activeTetrominoCoordinate = grid->getActiveTetrominoCoordinate();
             
@@ -105,9 +104,6 @@ void GameScene::setupTouchHandling()
                 grid->setActiveTetrominoCoordinate(newTetrominoCoordinate);
                 allowRotate = false;
                 lastTouchPos = touchPos;
-            } else {
-                touchStartedTime = clock();
-                
             }
         }
     };
@@ -118,17 +114,17 @@ void GameScene::setupTouchHandling()
         float distance = touchEndPos.distance(firstTouchPos);
         Size blockSize = this->grid->getBlockSize();
         
-        
+        //TODO: check the speed why is too fast
         if (distance < blockSize.width && allowRotate) {
             grid->rotateActiveTetromino();
         } else {
             Vec2 difference = touchEndPos - firstTouchPos; //maybe use lastTouchPos
             float touchDuration = (float) (clock() - touchStartedTime) /CLOCKS_PER_SEC;
             
-            float velocity = fabsf(difference.y/touchDuration);
+            float velocity = fabsf(difference.y / touchDuration);
 
             if (velocity > DROP_VECOCITY) {
-                CCLOG("DROP");
+                CCLOG("DROP %f",velocity);
             }
         }
     };

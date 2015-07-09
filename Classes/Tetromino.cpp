@@ -11,8 +11,6 @@
 #include "JSONPacker.h"
 #include <unordered_set>
 
-#define GRID_SIZE 4
-
 using namespace cocos2d;
 
 Tetromino* Tetromino::createWithType(TetrominoType type)
@@ -52,7 +50,7 @@ bool Tetromino::initWithType(TetrominoType type)
     float gridSizeF = float(GRID_SIZE);
     this->setContentSize(Size(dummySize.width * gridSizeF, dummySize.height * gridSizeF));
     
-    auto coordinates = rotations[this->rotationIndex];
+    auto coordinates = this->getCurrentRotations();
     
     for (Coordinate coordinate : coordinates) {
         Sprite* block = Sprite::create("block.png");
@@ -83,7 +81,7 @@ void Tetromino::rotate(bool right) {
         rotationIndex = (int) rotations.size() - 1;
     }
     
-    auto coordinates = rotations[this->rotationIndex];
+    auto coordinates = this->getCurrentRotations();
     
     for (int index =0;index < GRID_SIZE;++index)
     {
@@ -98,7 +96,7 @@ void Tetromino::rotate(bool right) {
 
 int Tetromino::getHighestYCoordinate()
 {
-    auto coordinates = rotations[this->rotationIndex];
+    auto coordinates = this->getCurrentRotations();
     int highestYCoordinate = 0;
 
     for (Coordinate coordinate : coordinates) {
@@ -109,7 +107,7 @@ int Tetromino::getHighestYCoordinate()
 
 int Tetromino::getWidthInBlocks()
 {
-    auto coordinates = rotations[this->rotationIndex];
+    auto coordinates = this->getCurrentRotations();
     std::unordered_set<int> widthPoint;
     for (Coordinate coordinate : coordinates) {
         widthPoint.insert(coordinate.x);
@@ -119,7 +117,7 @@ int Tetromino::getWidthInBlocks()
 
 int Tetromino::getMinimumXCoordinate()
 {
-    auto coordinates = rotations[this->rotationIndex];
+    auto coordinates = this->getCurrentRotations();
     int mininumXCoordinate = GRID_SIZE;
     for (Coordinate coordinate : coordinates) {
         mininumXCoordinate = coordinate.x < mininumXCoordinate ? coordinate.x : mininumXCoordinate;
@@ -134,7 +132,7 @@ std::vector<int> Tetromino::getSkirt()
     
     std::vector<int> skirt = std::vector<int>(width,GRID_SIZE -1);
     
-    auto coordinates = rotations[this->rotationIndex];
+    auto coordinates = this->getCurrentRotations();
     for (Coordinate coordinate : coordinates) {
         int x = coordinate.x - skirtStart;
         int skirtY = skirt[x];
@@ -147,3 +145,12 @@ std::vector<int> Tetromino::getSkirt()
 
 }
 
+std::vector<Sprite*> Tetromino::getBlocks()
+{
+    return blocks;
+}
+
+std::vector<Coordinate> Tetromino::getCurrentRotations()
+{
+    return rotations[rotationIndex];
+}

@@ -13,6 +13,8 @@
 #include "Constants.h"
 #include "Coordinate.h"
 
+#define GRID_SIZE 4
+
 class Tetromino : public cocos2d::Node
 {
 public:
@@ -23,7 +25,9 @@ public:
     int getHighestYCoordinate();
     int getWidthInBlocks();
     int getMinimumXCoordinate();
+    std::vector<cocos2d::Sprite*> getBlocks();
     std::vector<int> getSkirt();
+    std::vector<Coordinate> getCurrentRotations();
     
 private:
     TetrominoType type;

@@ -26,15 +26,20 @@ public:
     Coordinate getActiveTetrominoCoordinate();
     cocos2d::Size getBlockSize();
     Tetromino* getActiveTetromino();
+
     
 private:
     Tetromino* activeTetromino;
     Coordinate activeTetrominoCoordinate;
+    std::vector<std::vector<cocos2d::Sprite*>> blocksLanded;
+    
 
     bool init() override;
     void onEnter() override;
     cocos2d::Vec2 convertCoordinateToPosition(Coordinate coordinate);
     bool checkIFTetrominoCollides(Tetromino* tetromino, Coordinate tetrominoCoordinate);
+    void deactiveTetromino(Tetromino* tetromino, Coordinate tetrominoCoordinate);
+    void placeTetrominoOnBorad(Tetromino* tetromino, Coordinate tetrominoCoordinate);
 
 };
 
