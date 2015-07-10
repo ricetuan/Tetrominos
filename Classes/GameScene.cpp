@@ -30,6 +30,7 @@ bool GameScene::init()
     this->active = false;
     this->totalScore = 0;
     this->stepInterval = INITIAL_STEP_INTERVAL;
+    this->timeLeft = TIME_PER_GAME;
     
     return true;
 }
@@ -57,9 +58,15 @@ void GameScene::onEnter()
     
     this->scoreLabel = ui::Text::create("0",FONT_NAME,FONT_SIZE);
     this->scoreLabel->setAnchorPoint(Vec2(0.5f, 1.0f));
-    this->scoreLabel->setPosition(Vec2(visibleSize.width * 0.5f, visibleSize.height * 0.95f));
+    this->scoreLabel->setPosition(Vec2(visibleSize.width * 0.5f, visibleSize.height * 0.98f));
     this->scoreLabel->setColor(LABEL_COLOR);
     this->addChild(scoreLabel);
+    
+    this->timeLeftlabel = ui::Text::create("0",FONT_NAME,FONT_SIZE);
+    this->timeLeftlabel->setAnchorPoint(Vec2(0.5f, 1.0f));
+    this->timeLeftlabel->setPosition(this->scoreLabel->getPosition() - Vec2(0.0f, FONT_SIZE * 1.5f));
+    this->timeLeftlabel->setColor(LABEL_COLOR);
+    this->addChild(timeLeftlabel);
     
     setupTouchHandling();
     
@@ -196,8 +203,10 @@ void GameScene::setGameActive(bool active)
     this->active = active;
     if (active) {
         this->schedule(CC_SCHEDULE_SELECTOR(GameScene::step), this->stepInterval);
+        this->scheduleUpdate();
     } else {
         this->unschedule(CC_SCHEDULE_SELECTOR(GameScene::step));
+        this->unscheduleUpdate();
     }
 }
 
@@ -215,6 +224,22 @@ void GameScene::step(float dt)
     }
 }
 
+void GameScene::setTimeLeft(float time)
+{
+    this->timeLeft = time;
+    std::string timeLeftString = StringUtils::format("%2.1f", time);
+    this->timeLeftlabel->setString(timeLeftString);
+}
+void GameScene::update(float dt)
+{
+    Node::update(dt);
+    this->setTimeLeft(this->timeLeft - dt);
+    
+    if (this->timeLeft <= 0.0f) {
+        this->gameOver();
+    }
+}
+
 void GameScene::gameOver()
 {
     this->setGameActive(false);
@@ -227,7 +252,6 @@ void GameScene::gameOver()
     SceneManager::getInstance()->backToLobby();
     
 }
-
 #pragma mark -
 #pragma mark Utility Methods
 

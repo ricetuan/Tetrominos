@@ -17,6 +17,7 @@ static const int SCORE_TO_ACCELERATE = 1;
 static const float ACCELERATION_FACTOR = 0.9f;
 static const float DROP_VECOCITY = 10000.0f;
 static const float SPEED_MAX = 0.1f;
+static const float TIME_PER_GAME = 120.0f;
 
 static const int BLOCKS_PER_TETROMINO = 4;
 
