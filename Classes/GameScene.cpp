@@ -31,6 +31,7 @@ bool GameScene::init()
     this->totalScore = 0;
     this->stepInterval = INITIAL_STEP_INTERVAL;
     this->timeLeft = TIME_PER_GAME;
+    this->networkedSession = false;
     
     return true;
 }
@@ -186,6 +187,10 @@ void GameScene::updateScoreLabel(int score)
 
 #pragma mark -
 #pragma mark Public Method
+void GameScene::setNetworkedSession(bool networkedSession)
+{
+    this->networkedSession = networkedSession;
+}
 
 #pragma mark -
 #pragma mark Protected Method

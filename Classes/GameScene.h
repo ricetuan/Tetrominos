@@ -13,6 +13,7 @@
 #include "CocosGUI.h"
 #include "TetrominoBag.h"
 
+
 class Tetromino;
 class Grid;
 
@@ -22,6 +23,7 @@ class GameScene : public cocos2d::Node
 {
 public:
     CREATE_FUNC(GameScene);
+    void setNetworkedSession(bool networkedSession);
     
 protected:
     Grid* grid;
@@ -32,6 +34,7 @@ protected:
     int totalScore;
     float stepInterval;
     float timeLeft;
+    bool networkedSession;
     
     //LifeCycle
     bool init() override;

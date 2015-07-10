@@ -26,6 +26,9 @@ bool Lobby::init()
 void Lobby::onEnter()
 {
     Node::onEnter();
+    
+    SceneManager::getInstance()->receiveMultiplayerInvitations();
+    
     setupUI();
 }
 
@@ -60,6 +63,8 @@ void Lobby::SinglePlayerPressed(Ref* pSender, ui::Widget::TouchEventType eEventT
 
 void Lobby::multiplayerPressed(Ref* pSender, ui::Widget::TouchEventType eEventType)
 {
-    CCLOG("2 player");
+    if (eEventType == ui::Widget::TouchEventType::ENDED) {
+        SceneManager::getInstance()->showPeerList();
+    }
 
 }
