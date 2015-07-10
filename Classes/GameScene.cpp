@@ -29,6 +29,7 @@ bool GameScene::init()
     this->tetrominoBag = std::unique_ptr<TetrominoBag>(new TetrominoBag());
     this->active = false;
     this->totalScore = 0;
+    this->stepInterval = INITIAL_STEP_INTERVAL;
     
     return true;
 }
@@ -144,10 +145,21 @@ void GameScene::updateStateFromScore()
     if (newScore > this->totalScore) {
         this->totalScore = newScore;
         this->updateScoreLabel(newScore);
+        this->updateGameSpeed(this->totalScore);
     }
     
 }
 
+void GameScene::updateGameSpeed(int score)
+{
+    int stepAcceleration = score / SCORE_TO_ACCELERATE;
+    float intervalDeduction = powf(ACCELERATION_FACTOR, stepAcceleration);
+    float newInterval = MAX((INITIAL_STEP_INTERVAL * intervalDeduction),SPEED_MAX);
+    this->stepInterval = newInterval;
+    
+    this->unschedule(CC_SCHEDULE_SELECTOR(GameScene::step));
+    this->schedule(CC_SCHEDULE_SELECTOR(GameScene::step), this->stepInterval);
+}
 
 #pragma mark -
 #pragma mark UI Method
@@ -156,6 +168,7 @@ void GameScene::backButtonPressed(Ref* pSender, ui::Widget::TouchEventType eEven
     if (eEventType == ui::Widget::TouchEventType::ENDED) {
         SceneManager::getInstance()->backToLobby();
     }
+
     
 }
 void GameScene::updateScoreLabel(int score)
@@ -182,7 +195,7 @@ void GameScene::setGameActive(bool active)
 {
     this->active = active;
     if (active) {
-        this->schedule(CC_SCHEDULE_SELECTOR(GameScene::step), INITIAL_STEP_INTERVAL);
+        this->schedule(CC_SCHEDULE_SELECTOR(GameScene::step), this->stepInterval);
     } else {
         this->unschedule(CC_SCHEDULE_SELECTOR(GameScene::step));
     }
@@ -190,6 +203,9 @@ void GameScene::setGameActive(bool active)
 
 void GameScene::step(float dt)
 {
+    if (this->grid->checkIfTopReached()) {
+        this->gameOver();
+    }
     if (! grid->getActiveTetromino()) {
         Tetromino* newTetromino = createRandomTetromino();
         this->grid->spawnTetromino(newTetromino);
@@ -197,6 +213,19 @@ void GameScene::step(float dt)
         this->grid->step();
         this->updateStateFromScore();
     }
+}
+
+void GameScene::gameOver()
+{
+    this->setGameActive(false);
+    
+    std::string scoreString = StringUtils::toString(this->totalScore);
+    std::string messageContent = "Your score is " + scoreString + "!";
+    
+    MessageBox(messageContent.c_str(), "Game Over!!");
+    
+    SceneManager::getInstance()->backToLobby();
+    
 }
 
 #pragma mark -

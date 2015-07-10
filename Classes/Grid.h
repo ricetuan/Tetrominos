@@ -29,6 +29,7 @@ public:
     void dropActiveTetromino();
     int getScore();
     int getTotalLineCleared();
+    bool checkIfTopReached();
     
 private:
     Tetromino* activeTetromino;
