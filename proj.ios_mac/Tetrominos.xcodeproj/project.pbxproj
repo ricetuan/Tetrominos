@@ -76,6 +76,10 @@
 		9E21B9341B44B45D00CAA983 /* JSONPacker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E21B9311B44B45D00CAA983 /* JSONPacker.cpp */; };
 		9E21B9371B45DCA100CAA983 /* TetrominoBag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E21B9351B45DCA100CAA983 /* TetrominoBag.cpp */; };
 		9E21B9381B45DCA100CAA983 /* TetrominoBag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E21B9351B45DCA100CAA983 /* TetrominoBag.cpp */; };
+		9E21B9D71B50682400CAA983 /* NetworkingWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9E21B9D31B50682400CAA983 /* NetworkingWrapper.mm */; };
+		9E21B9D81B50682400CAA983 /* NetworkingWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9E21B9D31B50682400CAA983 /* NetworkingWrapper.mm */; };
+		9E21B9D91B50682400CAA983 /* NetworkManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9E21B9D51B50682400CAA983 /* NetworkManager.mm */; };
+		9E21B9DA1B50682400CAA983 /* NetworkManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9E21B9D51B50682400CAA983 /* NetworkManager.mm */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -186,6 +190,11 @@
 		9E21B9351B45DCA100CAA983 /* TetrominoBag.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TetrominoBag.cpp; sourceTree = "<group>"; };
 		9E21B9361B45DCA100CAA983 /* TetrominoBag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TetrominoBag.h; sourceTree = "<group>"; };
 		9E21B9C71B50360D00CAA983 /* UIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIConstants.h; sourceTree = "<group>"; };
+		9E21B9D21B50682400CAA983 /* NetworkingWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingWrapper.h; sourceTree = "<group>"; };
+		9E21B9D31B50682400CAA983 /* NetworkingWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NetworkingWrapper.mm; sourceTree = "<group>"; };
+		9E21B9D41B50682400CAA983 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
+		9E21B9D51B50682400CAA983 /* NetworkManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NetworkManager.mm; sourceTree = "<group>"; };
+		9E21B9D61B50682400CAA983 /* NetworkManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManagerDelegate.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -327,24 +336,10 @@
 				9E21B9C71B50360D00CAA983 /* UIConstants.h */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
-				9E21B9351B45DCA100CAA983 /* TetrominoBag.cpp */,
-				9E21B9361B45DCA100CAA983 /* TetrominoBag.h */,
-				46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */,
-				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
-				9E21B91D1B4498E000CAA983 /* SceneManager.cpp */,
-				9E21B91E1B4498E000CAA983 /* SceneManager.h */,
-				9E21B9211B44A49000CAA983 /* Grid.cpp */,
-				9E21B9221B44A49000CAA983 /* Grid.h */,
-				9E21B9251B44A84200CAA983 /* Tetromino.cpp */,
-				9E21B9261B44A84200CAA983 /* Tetromino.h */,
-				9E21B9291B44AFD900CAA983 /* Coordinate.cpp */,
-				9E21B92A1B44AFD900CAA983 /* Coordinate.h */,
-				9E21B9131B447DD200CAA983 /* Lobby.cpp */,
-				9E21B9141B447DD200CAA983 /* Lobby.h */,
-				9E21B9311B44B45D00CAA983 /* JSONPacker.cpp */,
-				9E21B9321B44B45D00CAA983 /* JSONPacker.h */,
-				9E21B9181B44861100CAA983 /* GameScene.cpp */,
-				9E21B9191B44861100CAA983 /* GameScene.h */,
+				9E21B9DB1B50683E00CAA983 /* Networking */,
+				9E21B9DC1B50689E00CAA983 /* Scenes */,
+				9E21B9DD1B5068E500CAA983 /* Game Sprites */,
+				9E21B9DE1B50690900CAA983 /* Utility */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -396,6 +391,57 @@
 			name = Icons;
 			path = ios;
 			sourceTree = SOURCE_ROOT;
+		};
+		9E21B9DB1B50683E00CAA983 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				9E21B9D21B50682400CAA983 /* NetworkingWrapper.h */,
+				9E21B9D31B50682400CAA983 /* NetworkingWrapper.mm */,
+				9E21B9D41B50682400CAA983 /* NetworkManager.h */,
+				9E21B9D51B50682400CAA983 /* NetworkManager.mm */,
+				9E21B9D61B50682400CAA983 /* NetworkManagerDelegate.h */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		9E21B9DC1B50689E00CAA983 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */,
+				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
+				9E21B91D1B4498E000CAA983 /* SceneManager.cpp */,
+				9E21B91E1B4498E000CAA983 /* SceneManager.h */,
+				9E21B9131B447DD200CAA983 /* Lobby.cpp */,
+				9E21B9141B447DD200CAA983 /* Lobby.h */,
+				9E21B9181B44861100CAA983 /* GameScene.cpp */,
+				9E21B9191B44861100CAA983 /* GameScene.h */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
+		9E21B9DD1B5068E500CAA983 /* Game Sprites */ = {
+			isa = PBXGroup;
+			children = (
+				9E21B9211B44A49000CAA983 /* Grid.cpp */,
+				9E21B9221B44A49000CAA983 /* Grid.h */,
+				9E21B9251B44A84200CAA983 /* Tetromino.cpp */,
+				9E21B9261B44A84200CAA983 /* Tetromino.h */,
+			);
+			name = "Game Sprites";
+			sourceTree = "<group>";
+		};
+		9E21B9DE1B50690900CAA983 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				9E21B9351B45DCA100CAA983 /* TetrominoBag.cpp */,
+				9E21B9361B45DCA100CAA983 /* TetrominoBag.h */,
+				9E21B9291B44AFD900CAA983 /* Coordinate.cpp */,
+				9E21B92A1B44AFD900CAA983 /* Coordinate.h */,
+				9E21B9311B44B45D00CAA983 /* JSONPacker.cpp */,
+				9E21B9321B44B45D00CAA983 /* JSONPacker.h */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -544,8 +590,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E21B9231B44A49000CAA983 /* Grid.cpp in Sources */,
+				9E21B9D71B50682400CAA983 /* NetworkingWrapper.mm in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
+				9E21B9D91B50682400CAA983 /* NetworkManager.mm in Sources */,
 				9E21B91F1B4498E000CAA983 /* SceneManager.cpp in Sources */,
 				9E21B9151B447DD200CAA983 /* Lobby.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
@@ -564,6 +612,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E21B91B1B44861100CAA983 /* GameScene.cpp in Sources */,
+				9E21B9D81B50682400CAA983 /* NetworkingWrapper.mm in Sources */,
 				9E21B92C1B44AFD900CAA983 /* Coordinate.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				9E21B9201B4498E000CAA983 /* SceneManager.cpp in Sources */,
@@ -572,6 +621,7 @@
 				9E21B9241B44A49000CAA983 /* Grid.cpp in Sources */,
 				9E21B9341B44B45D00CAA983 /* JSONPacker.cpp in Sources */,
 				9E21B9381B45DCA100CAA983 /* TetrominoBag.cpp in Sources */,
+				9E21B9DA1B50682400CAA983 /* NetworkManager.mm in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				9E21B9281B44A84200CAA983 /* Tetromino.cpp in Sources */,
 			);
