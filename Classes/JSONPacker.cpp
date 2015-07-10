@@ -58,4 +58,69 @@ namespace JSONPacker {
     
         return tetrominoState;
     }
+    
+    std::string packGameStateJSON(const GameState gameState)
+    {
+        rapidjson::Document document;
+        document.SetObject();
+        
+        document.AddMember("score", gameState.score, document.GetAllocator());
+        document.AddMember("name", gameState.name.c_str(), document.GetAllocator());
+        document.AddMember("gameOver", gameState.gameOver, document.GetAllocator());
+        
+        rapidjson::Value columns(rapidjson::kArrayType);
+        for (int column = 0; column < gameState.board.size(); ++column) {
+            rapidjson::Value blocks(rapidjson::kArrayType);
+            for (int row = 0; row < gameState.board[column].size(); ++row) {
+                Color3B color = gameState.board[column][row];
+                rapidjson::Value colorJson(rapidjson::kObjectType);
+                colorJson.AddMember("r", color.r, document.GetAllocator());
+                colorJson.AddMember("g", color.g, document.GetAllocator());
+                colorJson.AddMember("b", color.b, document.GetAllocator());
+                
+                blocks.PushBack(colorJson, document.GetAllocator());
+            }
+            columns.PushBack(blocks, document.GetAllocator());
+        }
+        document.AddMember("board", columns, document.GetAllocator());
+        
+        rapidjson::StringBuffer buffer;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+        document.Accept(writer);
+        
+        std::string returnString(buffer.GetString(), buffer.Size());
+    }
+    
+    GameState unpackGameStateJSON(std::string json)
+    {
+        rapidjson::Document document;
+        document.Parse<0>(json.c_str());
+        
+        GameState gameState;
+        
+        gameState.score = document["score"].GetInt();
+        gameState.name = document["name"].GetString();
+        gameState.gameOver = document["gameOver"].GetBool();
+        
+        rapidjson::Value& columns = document["board"];
+        
+        //conver color3b obj in the grid to json objects
+        for (rapidjson::SizeType column = 0; column < columns.Size(); ++column) {
+            rapidjson::Value& blocksJson = columns[column];
+            
+            std::vector<Color3B> blocks;
+            for (rapidjson::SizeType index = 0; index < blocksJson.Size(); ++index) {
+                rapidjson::Value& block = blocksJson[index];
+                int r = block["r"].GetInt();
+                int g = block["g"].GetInt();
+                int b = block["b"].GetInt();
+                
+                Color3B color = Color3B(r, g, b);
+                blocks.push_back(color);
+
+            }
+            gameState.board.push_back(blocks);
+        }
+        return  gameState;
+    }
 }
