@@ -42,6 +42,8 @@ private:
     void deactiveTetromino(Tetromino* tetromino, Coordinate tetrominoCoordinate);
     void placeTetrominoOnBorad(Tetromino* tetromino, Coordinate tetrominoCoordinate);
     Coordinate getTetrominoLandingCoordinate();
+    
+    void clearLines();
 
 };
 

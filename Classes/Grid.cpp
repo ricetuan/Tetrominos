@@ -154,7 +154,7 @@ void Grid::deactiveTetromino(Tetromino* tetromino, Coordinate tetrominoCoordinat
     this->placeTetrominoOnBorad(tetromino, tetrominoCoordinate);
     this->activeTetromino->removeFromParent();
     this->activeTetromino = nullptr;
-   
+    clearLines();
 }
 
 void Grid::placeTetrominoOnBorad(Tetromino* tetromino, Coordinate tetrominoCoordinate)
@@ -200,6 +200,48 @@ void Grid::dropActiveTetromino()
         this->setActiveTetrominoCoordinate(landingCoordinate);
         this->deactiveTetromino(activeTetromino, activeTetrominoCoordinate);
 
+}
+
+void Grid::clearLines()
+{
+    for(int y=0;y<GRID_HEIGHT;++y)
+    {
+        //check if all the blocks in a row are filled
+        bool fullLine = true;
+        std::vector<Sprite*> row = blocksLanded[y];
+        
+        for (auto block : row) {
+            if (!block) {
+                fullLine = false;
+                break;
+            }
+        }
+        
+        //clear teh line if filled
+        if (fullLine) {
+            for (Sprite* block : row)
+            {
+                block->removeFromParent();
+            }
+            blocksLanded.erase(blocksLanded.begin() + y);
+            
+            std::vector<std::vector<Sprite*>> rowsToMoveDown(blocksLanded.begin() + y,blocksLanded.end());
+            
+            for (std::vector<Sprite*> rowAbove : rowsToMoveDown) {
+                for (Sprite* block : rowAbove) {
+                    if (block) {
+                        block->setPositionY(block->getPosition().y - block->getContentSize().height);
+                    }
+                }
+            }
+            y--;
+        }
+        
+        std::vector<Sprite*> newRow(GRID_WIDTH, nullptr);
+        blocksLanded.push_back(newRow);
+
+        //move bloks in all rows above down one y coordinate
+    }
 }
 
 
