@@ -14,6 +14,7 @@
 #include "Coordinate.h"
 #include "Constants.h"
 #include <time.h>
+#include "UIConstants.h"
 
 using namespace cocos2d;
 
@@ -27,6 +28,7 @@ bool GameScene::init()
     this->addChild(background);
     this->tetrominoBag = std::unique_ptr<TetrominoBag>(new TetrominoBag());
     this->active = false;
+    this->totalScore = 0;
     
     return true;
 }
@@ -50,8 +52,13 @@ void GameScene::onEnter()
     backButton->setPosition(Vec2(0.0f,visibleSize.height));
     backButton->loadTextures("backButton.png", "backButtonPressed.png");
     backButton->addTouchEventListener(CC_CALLBACK_2(GameScene::backButtonPressed,this));
-
     this->addChild(backButton);
+    
+    this->scoreLabel = ui::Text::create("0",FONT_NAME,FONT_SIZE);
+    this->scoreLabel->setAnchorPoint(Vec2(0.5f, 1.0f));
+    this->scoreLabel->setPosition(Vec2(visibleSize.width * 0.5f, visibleSize.height * 0.95f));
+    this->scoreLabel->setColor(LABEL_COLOR);
+    this->addChild(scoreLabel);
     
     setupTouchHandling();
     
@@ -112,7 +119,6 @@ void GameScene::setupTouchHandling()
             float distance = touchEndPos.distance(firstTouchPos);
             Size blockSize = this->grid->getBlockSize();
             
-            //TODO: check the speed why is too fast
             if (distance < blockSize.width && allowRotate) {
                 grid->rotateActiveTetromino();
             } else {
@@ -123,12 +129,23 @@ void GameScene::setupTouchHandling()
 
                 if (velocity > DROP_VECOCITY) {
                     this->grid->dropActiveTetromino();
+                    this->updateStateFromScore();
                 }
             }
         }
     };
     
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchListener, this);
+}
+
+void GameScene::updateStateFromScore()
+{
+    int newScore = this->grid->getScore();
+    if (newScore > this->totalScore) {
+        this->totalScore = newScore;
+        this->updateScoreLabel(newScore);
+    }
+    
 }
 
 
@@ -141,6 +158,12 @@ void GameScene::backButtonPressed(Ref* pSender, ui::Widget::TouchEventType eEven
     }
     
 }
+void GameScene::updateScoreLabel(int score)
+{
+    std::string scoreString = StringUtils::toString(score);
+    this->scoreLabel->setString(scoreString);
+}
+
 #pragma mark -
 #pragma mark Public Method
 
@@ -172,6 +195,7 @@ void GameScene::step(float dt)
         this->grid->spawnTetromino(newTetromino);
     } else {
         this->grid->step();
+        this->updateStateFromScore();
     }
 }
 

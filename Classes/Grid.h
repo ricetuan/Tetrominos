@@ -27,14 +27,16 @@ public:
     cocos2d::Size getBlockSize();
     Tetromino* getActiveTetromino();
     void dropActiveTetromino();
-
+    int getScore();
+    int getTotalLineCleared();
     
 private:
     Tetromino* activeTetromino;
     Tetromino* ghostTetromino;
     Coordinate activeTetrominoCoordinate;
     std::vector<std::vector<cocos2d::Sprite*>> blocksLanded;
-    
+    int score;
+    int totalLinesCleared;
 
     bool init() override;
     void onEnter() override;
@@ -44,6 +46,7 @@ private:
     void placeTetrominoOnBorad(Tetromino* tetromino, Coordinate tetrominoCoordinate);
     Coordinate getTetrominoLandingCoordinate();
     void updateGhostTetrominoPosition();
+    void updateScore(int lineCleared);
     
     void clearLines();
 

@@ -8,6 +8,7 @@
 
 #include "Grid.h"
 #include "Tetromino.h"
+#include "UIConstants.h"
 using namespace cocos2d;
 
 #pragma mark LifeCycle
@@ -18,6 +19,8 @@ bool Grid::init()
     }
     this->activeTetromino = nullptr;
     this->activeTetrominoCoordinate = Coordinate();
+    this->score = 0;
+    this->totalLinesCleared = 0;
     
     for (int index = 0; index < GRID_HEIGHT; ++index) {
         std::vector<Sprite*> row(GRID_WIDTH,nullptr);
@@ -70,7 +73,7 @@ void Grid::spawnTetromino(Tetromino* tetromino)
     TetrominoType type = activeTetromino->getTetrominoType();
     this->ghostTetromino = Tetromino::createWithType(type);
     this->ghostTetromino->setCascadeOpacityEnabled(true);
-    this->ghostTetromino->setOpacity(70);
+    this->ghostTetromino->setOpacity(GHOST_TETROMINO_OPACITY);
     this->updateGhostTetrominoPosition();
     this->addChild(ghostTetromino);   
 }
@@ -127,6 +130,15 @@ Size Grid::getBlockSize()
     return Size(blockWidth,blockHeight);
 }
 
+int Grid::getScore()
+{
+    return this->score;
+}
+
+int Grid::getTotalLineCleared()
+{
+    return this->totalLinesCleared;
+}
 
 #pragma mark -
 #pragma mark Private Methods
@@ -219,6 +231,8 @@ void Grid::dropActiveTetromino()
 
 void Grid::clearLines()
 {
+    int linesCleared = 0;
+    
     for(int y=0;y<GRID_HEIGHT;++y)
     {
         //check if all the blocks in a row are filled
@@ -249,14 +263,15 @@ void Grid::clearLines()
                     }
                 }
             }
+            
             y--;
+            linesCleared ++;
+            std::vector<Sprite*> newRow(GRID_WIDTH, nullptr);
+            blocksLanded.push_back(newRow);
         }
-        
-        std::vector<Sprite*> newRow(GRID_WIDTH, nullptr);
-        blocksLanded.push_back(newRow);
-
-        //move bloks in all rows above down one y coordinate
     }
+    this->totalLinesCleared += linesCleared;
+    this->updateScore(linesCleared);
 }
 
 void Grid::updateGhostTetrominoPosition()
@@ -267,4 +282,12 @@ void Grid::updateGhostTetrominoPosition()
     }
 }
 
+void Grid::updateScore(int linesCleared)
+{
+    int scoredToAdd = linesCleared;
+    if (linesCleared == 4) {
+        scoredToAdd = 5;
+    }
+    this->score += scoredToAdd;
+}
 

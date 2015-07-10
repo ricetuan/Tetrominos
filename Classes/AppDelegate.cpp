@@ -48,6 +48,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     
     
     FileUtils::getInstance()->addSearchPath("res");
+    FileUtils::getInstance()->addSearchPath("fonts");
     
     std::vector<std::string> searchResolutionOrder(1);
     
