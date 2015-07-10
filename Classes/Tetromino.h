@@ -25,6 +25,7 @@ public:
     int getHighestYCoordinate();
     int getWidthInBlocks();
     int getMinimumXCoordinate();
+    TetrominoType getTetrominoType();
     std::vector<cocos2d::Sprite*> getBlocks();
     std::vector<int> getSkirt();
     std::vector<Coordinate> getCurrentRotations();
