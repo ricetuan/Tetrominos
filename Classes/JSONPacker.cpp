@@ -89,6 +89,7 @@ namespace JSONPacker {
         document.Accept(writer);
         
         std::string returnString(buffer.GetString(), buffer.Size());
+        return returnString;
     }
     
     GameState unpackGameStateJSON(std::string json)

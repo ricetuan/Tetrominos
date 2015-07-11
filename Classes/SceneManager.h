@@ -10,6 +10,8 @@
 #define __Tetrominos__SceneManager__
 #include "NetworkingWrapper.h";
 
+class GameScene;
+
 class SceneManager : NetworkingDelegate
 {
 public:
@@ -19,8 +21,10 @@ public:
     
     void showPeerList();
     void receiveMultiplayerInvitations();
+    void sendData(const void* data, unsigned long length);
 private:
     std::unique_ptr<NetworkingWrapper> networkingWrapper;
+    GameScene* gameScene;
     
     SceneManager();
     ~SceneManager();

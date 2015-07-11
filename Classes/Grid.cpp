@@ -150,6 +150,11 @@ int Grid::getTotalLineCleared()
     return this->totalLinesCleared;
 }
 
+std::vector<std::vector<Sprite*>> Grid::getBlocksLanded()
+{
+    return this->blocksLanded;
+}
+
 #pragma mark -
 #pragma mark Private Methods
 

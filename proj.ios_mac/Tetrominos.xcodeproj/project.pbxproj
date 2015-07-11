@@ -81,6 +81,8 @@
 		9E21B9D91B50682400CAA983 /* NetworkManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9E21B9D51B50682400CAA983 /* NetworkManager.mm */; };
 		9E21B9DA1B50682400CAA983 /* NetworkManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9E21B9D51B50682400CAA983 /* NetworkManager.mm */; };
 		9E21B9E01B50783300CAA983 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E21B9DF1B50783300CAA983 /* MultipeerConnectivity.framework */; };
+		9E21B9E31B508AD100CAA983 /* PreviewGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E21B9E11B508AD100CAA983 /* PreviewGrid.cpp */; };
+		9E21B9E41B508AD100CAA983 /* PreviewGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E21B9E11B508AD100CAA983 /* PreviewGrid.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -197,6 +199,8 @@
 		9E21B9D51B50682400CAA983 /* NetworkManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NetworkManager.mm; sourceTree = "<group>"; };
 		9E21B9D61B50682400CAA983 /* NetworkManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManagerDelegate.h; sourceTree = "<group>"; };
 		9E21B9DF1B50783300CAA983 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = DEVELOPER_DIR; };
+		9E21B9E11B508AD100CAA983 /* PreviewGrid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PreviewGrid.cpp; sourceTree = "<group>"; };
+		9E21B9E21B508AD100CAA983 /* PreviewGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewGrid.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -426,6 +430,8 @@
 		9E21B9DD1B5068E500CAA983 /* Game Sprites */ = {
 			isa = PBXGroup;
 			children = (
+				9E21B9E11B508AD100CAA983 /* PreviewGrid.cpp */,
+				9E21B9E21B508AD100CAA983 /* PreviewGrid.h */,
 				9E21B9211B44A49000CAA983 /* Grid.cpp */,
 				9E21B9221B44A49000CAA983 /* Grid.h */,
 				9E21B9251B44A84200CAA983 /* Tetromino.cpp */,
@@ -601,6 +607,7 @@
 				9E21B91F1B4498E000CAA983 /* SceneManager.cpp in Sources */,
 				9E21B9151B447DD200CAA983 /* Lobby.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
+				9E21B9E31B508AD100CAA983 /* PreviewGrid.cpp in Sources */,
 				9E21B91A1B44861100CAA983 /* GameScene.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				9E21B92B1B44AFD900CAA983 /* Coordinate.cpp in Sources */,
@@ -621,6 +628,7 @@
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				9E21B9201B4498E000CAA983 /* SceneManager.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
+				9E21B9E41B508AD100CAA983 /* PreviewGrid.cpp in Sources */,
 				9E21B9161B447DD200CAA983 /* Lobby.cpp in Sources */,
 				9E21B9241B44A49000CAA983 /* Grid.cpp in Sources */,
 				9E21B9341B44B45D00CAA983 /* JSONPacker.cpp in Sources */,
